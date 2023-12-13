@@ -24,6 +24,15 @@ public class City {
     }
 
     @Override
+    public String toString() {
+        return "City{" +
+                "name='" + name + '\'' +
+                ", img=" + img +
+                ", population=" + population +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof City)) return false;
@@ -31,15 +40,6 @@ public class City {
         return img == city.img &&
                 population == city.population &&
                 name.equals(city.name);
-    }
-
-    @Override
-    public String toString() {
-        return "City{" +
-                "name='" + name + '\'' +
-                ", img=" + img +
-                ", population=" + population +
-                '}';
     }
 
 }

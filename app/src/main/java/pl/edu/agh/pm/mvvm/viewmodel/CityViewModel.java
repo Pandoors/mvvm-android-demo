@@ -28,12 +28,7 @@ public class CityViewModel extends ViewModel {
     }
 
     private void loop() {
-        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                updateCity();
-            }
-        }, delay);
+        new Handler(Looper.getMainLooper()).postDelayed(this::updateCity, delay);
     }
 
     private void updateCity() {
