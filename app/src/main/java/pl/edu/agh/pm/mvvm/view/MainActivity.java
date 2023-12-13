@@ -7,12 +7,12 @@ import androidx.lifecycle.ViewModelProvider;
 import android.os.Bundle;
 
 import pl.edu.agh.pm.mvvm.databinding.ActivityMainBinding;
-import pl.edu.agh.pm.mvvm.viewmodel.CityViewModel;
+import pl.edu.agh.pm.mvvm.viewmodel.BuildingViewModel;
 
 public class MainActivity extends AppCompatActivity {
 
     // view has reference to ViewModel
-    private CityViewModel cityViewModel;
+    private BuildingViewModel buildingViewModel;
     private ActivityMainBinding binding;
 
     @Override
@@ -21,20 +21,20 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        cityViewModel = new ViewModelProvider(this).get(CityViewModel.class);
+        buildingViewModel = new ViewModelProvider(this).get(BuildingViewModel.class);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
 
-        cityViewModel.getCityData().observe(this, city -> {
+        buildingViewModel.getBuildingData().observe(this, city -> {
             if (city != null) {
-                binding.cityImage.setImageDrawable(
+                binding.buildingImage.setImageDrawable(
                         ResourcesCompat.getDrawable(getResources(), city.getImg(), getApplicationContext().getTheme())
                 );
-                binding.cityNameTV.setText(city.getName());
-                binding.cityPopulationTV.setText(String.valueOf(city.getPopulation()));
+                binding.buildingNameTV.setText(city.getName());
+                binding.buildingAddressTV.setText(String.valueOf(city.getAddress()));
             }
         });
     }
