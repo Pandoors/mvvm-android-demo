@@ -14,10 +14,10 @@ import pl.edu.agh.pm.mvvm.model.BuildingDataProvider;
 
 public class BuildingViewModel extends ViewModel {
 
+    //data source that the View would bind to
     private final MutableLiveData<Building> buildingData = new MutableLiveData<>();
-    private final List<Building> cities = new BuildingDataProvider().getBuildings();
+    private final List<Building> buildings = new BuildingDataProvider().getBuildings();
     private int currentIndex = 0;
-    private final long delay = 2000L;
 
     public BuildingViewModel() {
         loop();
@@ -28,14 +28,15 @@ public class BuildingViewModel extends ViewModel {
     }
 
     private void loop() {
+        long delay = 2000L;
         new Handler(Looper.getMainLooper()).postDelayed(this::updateBuilding, delay);
     }
 
     private void updateBuilding() {
         currentIndex++;
-        currentIndex %= cities.size();
+        currentIndex %= buildings.size();
 
-        buildingData.postValue(cities.get(currentIndex));
+        buildingData.postValue(buildings.get(currentIndex));
 
         loop();
     }

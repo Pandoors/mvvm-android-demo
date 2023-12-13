@@ -10,7 +10,6 @@ import pl.edu.agh.pm.mvvm.databinding.ActivityMainBinding;
 import pl.edu.agh.pm.mvvm.viewmodel.BuildingViewModel;
 
 public class MainActivity extends AppCompatActivity {
-
     // view has reference to ViewModel
     private BuildingViewModel buildingViewModel;
     private ActivityMainBinding binding;
@@ -28,13 +27,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        buildingViewModel.getBuildingData().observe(this, city -> {
-            if (city != null) {
+        buildingViewModel.getBuildingData().observe(this, building -> {
+            if (building != null) {
                 binding.buildingImage.setImageDrawable(
-                        ResourcesCompat.getDrawable(getResources(), city.getImg(), getApplicationContext().getTheme())
+                        ResourcesCompat.getDrawable(getResources(), building.getImg(), getApplicationContext().getTheme())
                 );
-                binding.buildingNameTV.setText(city.getName());
-                binding.buildingAddressTV.setText(String.valueOf(city.getAddress()));
+                binding.buildingNameTV.setText(building.getName());
+                binding.buildingAddressTV.setText(String.valueOf(building.getAddress()));
             }
         });
     }
